@@ -28,4 +28,13 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
      assert workouts.length == 5
    end
 
+   test "#create" do
+     user = create(:user)
+
+     post user_workouts_path(user, params: {workout: {date: (Time.now - 1.day).to_s, duration: 25}})
+     assert user.workouts.length == 1
+     workout = user.workouts.first
+     assert workout.duration == 25
+     assert workout.date.to_date == Date.yesterday
+   end
 end
