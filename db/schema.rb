@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_044005) do
 
   create_table "workouts", force: :cascade do |t|
     t.integer "duration"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
 end
