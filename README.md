@@ -19,3 +19,6 @@ A workout can be created by sending a POST request with a JSON object to the `/u
 *Example*:
 ```curl -d '{"workout": {"date": "2021-03-15T04:55:45.197Z", "duration": 90}}' -H 'Content-type: application/json' https://lit-wave-88820.herokuapp.com/users/1/workouts
 ```
+
+#### Running Tests
+`rails test`
