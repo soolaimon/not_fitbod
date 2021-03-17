@@ -4,11 +4,11 @@ class WorkoutsController < ApplicationController
   def index
     workouts = @user.workouts.order(:id)
     workouts = workouts.where(created_at: DateTime.parse(params[:created_since])..) if params[:created_since]
-    render json: {workouts: workouts}
+    render json: {user: {email_address: @user.email_address}, workouts: workouts}
   end
 
   def create
-    render json: {workout: @user.workouts.create(workout_params)}
+    render json: {user: {email_address: @user.email_address}, workout: @user.workouts.create(workout_params)}
   end
 
   private
