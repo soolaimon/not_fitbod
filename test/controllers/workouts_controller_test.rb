@@ -9,7 +9,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
      one_minute_ago = create(:workout, created_at: Time.now - 1.minute, user: user)
      now = create(:workout, user: user)
 
-     get user_workouts_path(user, params: {created_since: (Time.now- 1.minute).to_s})
+     get user_workouts_path(user), params: {created_since: (Time.now- 1.minute).to_s}
      assert_response :success
 
      workouts = JSON.parse(response.body)["workouts"]
@@ -31,7 +31,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
    test "#create" do
      user = create(:user)
 
-     post user_workouts_path(user, params: {workout: {date: (Time.now - 1.day).to_s, duration: 25}})
+     post user_workouts_path(user), params: {workout: {date: (Time.now - 1.day).to_s, duration: 25}}, as: :json
      assert user.workouts.length == 1
      workout = user.workouts.first
      assert workout.duration == 25
